@@ -1,0 +1,88 @@
+<body>
+    <app-top-bar></app-top-bar>
+
+    <div class="leftcolumn">
+        <p class="paragraph">
+            <strong>Note: </strong>
+            <span class='p1'>
+                Greeting, welcome to PandoRec-Movie!! For new user, we suggest you to rate some movies to activate your recommendation system. We appreciate your patient. And hope you enjoy your time in PandoRec. Peace and Love.
+            </span>
+            
+        </p>
+
+        <br>
+        <hr>
+        <br>
+
+        <button mat-icon-button class="example-icon" type="submit" (click)="showUserFavrite()">
+            Find My Favorite<mat-icon>person_search</mat-icon>
+        </button>
+        
+        <br>
+        <mat-form-field class="example-chip-list">
+            
+            <mat-label>Favorite Genres</mat-label>
+            <mat-chip-list #chipList aria-label="Genres selection">
+              <mat-chip
+                *ngFor="let genre of genres_selected"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(genre)">
+                {{genre}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="New genre..."
+                #fruitInput
+                [formControl]="genreCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let genre of genreslist" [value]="genre">
+                {{genre}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+
+    </div>
+    <div class="midcolumn">
+        <mat-toolbar color = "primary">
+            <h2>Most Popular Movie in System <mat-icon aria-label="Sign" class="gap">whatshot</mat-icon></h2>
+            <span class="example-spacer"></span>
+            
+        </mat-toolbar>
+        <div class="card" *ngFor="let movie of generalMovieList" (click)="openMovieDialog(movie)">
+            <img src={{movie.poster_link}} alt="no image found">
+            <br>
+            <span class="p1">{{movie.title}}</span>
+            <br>
+        </div>
+        <br>
+
+        <br>
+        <div *ngFor="let genreMovies of selectMovieList | keyvalue">
+            <mat-toolbar color = "primary">
+                <h2>{{genreMovies.key}} <mat-icon aria-label="Sign" class="gap">whatshot</mat-icon></h2>
+                <span class="example-spacer"></span>
+                
+            </mat-toolbar>
+            <div class="card" *ngFor="let movie of genreMovies.value" (click)="openMovieDialog(movie)">
+                <img src={{movie.poster_link}} alt="no image found">
+                <br>
+                <span class="p1">{{movie.title}}</span>
+                <br>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+    
+
+</body>

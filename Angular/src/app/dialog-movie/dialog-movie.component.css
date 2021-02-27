@@ -1,0 +1,49 @@
+img {
+    max-width: 60%;
+    max-height: 60%;
+}
+
+.card {
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin-top: 20px;
+    width: 20%;
+    float: left;
+    margin-right: 20px;
+}  
+
+.movie_title {
+    float: left;
+    width: 300px;
+    
+}
+
+.movie-info {
+    
+    height: 300px;
+    width: 340px;
+    float: right;
+    
+}
+
+
+.container {
+    width: 100%;
+    height: auto;
+
+    /* display: flex; */
+}
+
+.container2 {
+    width: 100%;
+
+    /* display: flex; */
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.p1 {
+    font-size:0.875em;
+}
